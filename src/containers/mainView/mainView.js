@@ -13,7 +13,6 @@ class Counter extends Component {
 
     showValue(){
         this.props.onStoreResult(this.nameValue.value)
-        //  alert('name '+ this.nameValue.value)
     }
 
     render () {
