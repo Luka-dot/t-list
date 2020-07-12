@@ -36,17 +36,20 @@ class Counter extends Component {
             
             <hr />
             
-            <h3>Current list</h3>
-            <ul className="col">
-                {this.props.storedResults.map(strResult => (
-                    <ul 
-                        className="d-flex justify-content-start" 
-                        key={strResult.id} onClick={() => this.props.onDeleteResult(strResult.id)}
-                    >{strResult.name} </ul>
-                ))}
-                
-            </ul>
-                <button className="btn btn-secondary">SAVE List</button>
+            <h3>Current list items</h3>
+                <div className="card" >
+                    <ul className="list-group list-group-flush ">
+                        
+                        {this.props.storedResults.map(strResult => (
+                            <ul 
+                                className="d-flex justify-content-start list-group-item" 
+                                key={strResult.id} onClick={() => this.props.onDeleteResult(strResult.id)}
+                            >{strResult.name} </ul>
+                        ))}
+                        
+                    </ul>
+                </div>
+                    <button className="btn btn-secondary">SAVE List</button>
             </div>
         );
     }
