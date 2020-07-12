@@ -6,23 +6,48 @@ import * as actionTypes from '../../store/actions';
 
 class Counter extends Component {
 
+    constructor() {
+        super();
+        this.showValue = this.showValue.bind(this);
+    }
+
+    showValue(){
+        this.props.onStoreResult(this.nameValue.value)
+        //  alert('name '+ this.nameValue.value)
+    }
+
     render () {
         return (
             <div>
-                <h2>Available Lists's</h2>
-                <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
-                <CounterControl label="Decrement" clicked={this.props.onDecrementCounter}  />
-                <CounterControl label="Add 5" clicked={this.props.onAddCounter}  />
-                <CounterControl label="Subtract 5" clicked={this.props.onSubtractCounter}  />               
+                <h2>Add a new list</h2>
+                <div className="row justify-content-center">
+                    <div className="col-10">
+                        <div className="input-group mb-3">
+                            
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Add item here"
+                                ref={el => this.nameValue=el} >
+                            </input>
+                            <button type="button" className="btn btn-primary" label="Add" onClick={this.showValue}>Add</button>
+                        </div>       
+                    </div>    
+                </div>   
             
             <hr />
-            <h3>Add a new list</h3>
-            <ul>
+            
+            <h3>Current list</h3>
+            <ul className="col">
                 {this.props.storedResults.map(strResult => (
-                    <li key={strResult.id} onClick={() => this.props.onDeleteResult(strResult.id)}>{strResult.value}</li>
+                    <ul 
+                        className="d-flex justify-content-start" 
+                        key={strResult.id} onClick={() => this.props.onDeleteResult(strResult.id)}
+                    >{strResult.name} </ul>
                 ))}
                 
             </ul>
+                <button className="btn btn-secondary">SAVE List</button>
             </div>
         );
     }
@@ -30,18 +55,13 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.ctr.counter,
         storedResults: state.res.results
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({type: actionTypes.INCREMENT}),
-        onDecrementCounter: () => dispatch({type: actionTypes.DECREMENT}),
-        onAddCounter: () => dispatch({type: actionTypes.ADD, val: 5}),
-        onSubtractCounter: () => dispatch({type: actionTypes.SUBTRACT, val: 5}),
-        onStoreResult: (result) => dispatch({type: actionTypes.STORE_RESULT, result: result}),
+        onStoreResult: (el) => dispatch({type: actionTypes.STORE_RESULT, result: el}),
         onDeleteResult: (id) => dispatch({type: actionTypes.DELETE_RESULT, resultElId: id})
     };
 };

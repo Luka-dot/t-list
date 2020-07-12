@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions';
 
 const initialState = {
-    results: []
+    results: [{id: "1", name: "test", completed: false}, {id: "22", name: "MILK", completed: false}]
 }
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.STORE_RESULT: 
             return {
                 ...state,
-                results: state.results.concat({id: new Date(),value: action.result})
+                results: state.results.concat({id: new Date(), name: action.result, completed: false})
             }
         case actionTypes.DELETE_RESULT:
             const updatedArray = state.results.filter(result => result.id !== action.resultElId);

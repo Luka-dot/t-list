@@ -28,6 +28,8 @@ class Counter extends Component {
     }
 }
 
+// this gives access to the state for this component. Define what pieces of store we want 
+// to have accessible here by mapping it.
 const mapStateToProps = state => {
     return {
         ctr: state.ctr.counter,
