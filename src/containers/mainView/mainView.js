@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import CounterControl from '../../components/CounterControl/CounterControl';
+
 import * as actionTypes from '../../store/actions';
 
 class Counter extends Component {
@@ -38,15 +38,14 @@ class Counter extends Component {
             
             <h3>Current list items</h3>
                 <div className="card" >
-                    <ul className="list-group list-group-flush ">
-                        
+                    <ul className="list-group list-group-flush ">                       
                         {this.props.storedResults.map(strResult => (
                             <ul 
                                 className="d-flex justify-content-start list-group-item" 
-                                key={strResult.id} onClick={() => this.props.onDeleteResult(strResult.id)}
+                                key={strResult.id} 
+                                onClick={() => this.props.onDeleteResult(strResult.id)}
                             >{strResult.name} </ul>
-                        ))}
-                        
+                        ))}                        
                     </ul>
                 </div>
                     <button className="btn btn-secondary">SAVE List</button>
